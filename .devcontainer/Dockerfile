@@ -43,5 +43,10 @@ WORKDIR $project_root
 # --- 2. 複製 Poetry 依賴文件（不需安裝，留給 postCreateCommand.sh）---
 COPY pyproject.toml poetry.lock ./
 
+# 設定虛擬環境在專案目錄下 (.venv)
+# 安裝依賴 (不包含專案本身，因為程式碼還沒複製進來)
+RUN /root/.local/bin/poetry config virtualenvs.in-project true && \
+    /root/.local/bin/poetry install --no-root --no-interaction --no-ansi
+
 # --- 3. 複製專案程式碼 ---
 COPY . .
