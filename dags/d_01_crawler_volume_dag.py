@@ -141,7 +141,8 @@ with DAG(
     start_date=pendulum.datetime(2020, 1, 1, tz="Asia/Taipei"),
     schedule="00 6 * * *",
     catchup=False,
-    tags=["fruit", "moa", "mysql"]
+    tags=["fruit", "moa", "mysql"],
+    is_paused_upon_creation=False,
 ) as dag:
 
     @task()
